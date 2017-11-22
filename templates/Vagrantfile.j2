@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+
+current_dir    = File.dirname(File.expand_path(__FILE__))
+configs        = YAML.load_file("#{current_dir}/config.yml")
+vagrant_config = configs['configs'][configs['configs']['use']]
+
+HOSTS = vagrant_config['hosts']
+
+Vagrant.configure("2") do |config|
+  config.vm.box = vagrant_config['vagrant_box']
+
+  # Disable sync'd folder
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  # Specify provider
+#  config.vm.provider :libvert
+
+  HOSTS.each do |host|
+    config.vm.define "#{vagrant_config[host]['hostname']}" do |node|
+
+	  # Set host name
+      node.vm.hostname = vagrant_config[host]['hostname']
+
+      # Specify public network
+#      node.vm.network "public_network"
+      # Specify ip address
+#      node.vm.network "private_network", ip: vagrant_config[host]['public_ip'], type: "static"
+
+	end
+  end
+end

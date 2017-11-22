@@ -1,0 +1,22 @@
+---
+configs:
+  use: 'system'
+
+  system:
+    vagrant_box: '{{ vagrant_box }}'
+
+    hosts: [
+{% for host in host_list %}
+      "{{ host.hostname }}"
+{% endfor %}
+      ]
+
+{% for host in host_list %}
+    {{ host.hostname }}:
+      hostname: '{{ host.hostname }}'
+      vm_name: '{{ host.vm_name }}'
+      public_ip: '{{ host.public_ip }}'
+      vm_memory: '{{ host.memory }}'
+
+{% endfor %}
+...

@@ -1,0 +1,6 @@
+---
+vagrant_box: "centos/7"
+
+vagrant_vm_list:
+  - { hostname: server02, vagrant_folder: "/tmp/vagrant2", vm_name: server2 }
+...

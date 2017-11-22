@@ -1,0 +1,7 @@
+---
+- name: Halt Vagrant virtual machines
+  command: "vagrant halt"
+  args:
+    chdir: "{{ vagrant_folder }}"
+  changed_when: false
+...

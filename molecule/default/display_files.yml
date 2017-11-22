@@ -1,0 +1,19 @@
+---
+- name: Cat config.yml
+  command: "cat /tmp/config.yml"
+  changed_when: false
+  register: result
+
+- name: Display config.yml file
+  debug:
+    var: result.stdout_lines
+
+- name: Cat Vagrantfile
+  command: "cat /tmp/Vagrantfile"
+  changed_when: false
+  register: result
+
+- name: Display Vagrantfile file
+  debug:
+    var: result.stdout_lines
+...

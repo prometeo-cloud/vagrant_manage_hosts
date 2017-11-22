@@ -1,0 +1,21 @@
+---
+- name: Generate Vagrantfile and config.yml
+  include_tasks: vagrant_generate_files.yml
+  with_items: "{{ vagrant_host_list }}"
+  when: (taskname == "generate_files") and (taskname is defined)
+
+- name: Start Vagrant boxes
+  include_tasks: "vagrant_up.yml"
+  with_items: "{{ vagrant_host_list }}"
+  when: (taskname == "vagrant_up") and (taskname is defined)
+
+- name: Halt Vagrant boxes
+  include_tasks: "vagrant_halt.yml"
+  with_items: "{{ vagrant_host_list }}"
+  when: (taskname == "vagrant_halt") and (taskname is defined)
+
+- name: Destroy Vagrant boxes
+  include_tasks: "vagrant_destroy.yml"
+  with_items: "{{ vagrant_host_list }}"
+  when: (taskname == "vagrant_destroy") and (taskname is defined)
+...

@@ -1,0 +1,7 @@
+---
+- name: Destroy Vagrant virtual machines
+  command: "vagrant destroy"
+  args:
+    chdir: "{{ vagrant_folder }}"
+  changed_when: false
+...
