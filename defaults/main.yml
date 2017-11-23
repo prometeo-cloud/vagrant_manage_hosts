@@ -1,2 +1,15 @@
+# Example variables for role:
+#
+#  List of servers on which Vagrant boxes are created:
+vagrant_host_list:
+  - { host: "192.168.42.100" }
+  - { host: "192.168.42.101" }
+
+#  Base Vagrant box:
+vagrant_box: "centos/7"
+
+#  List of Vagrant boxes to create:
+vagrant_vm_list:
+  - { hostname: server01, vagrant_folder: "/tmp/vagrant1" }
+  - { hostname: server02, vagrant_folder: "/tmp/vagrant2" }
 ---
-...

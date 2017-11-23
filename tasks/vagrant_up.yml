@@ -1,14 +1,14 @@
 ---
 - name: Clear out previous runs
   file:
-    path: "{{ item.value.vagrant_folder }}/.vagrant"
+    path: "{{ item.vagrant_folder }}/.vagrant"
     state: absent
   failed_when: false
 
 - name: Start Vagrant virtual machines
   command: "vagrant up"
   args:
-    chdir: "{{ item.value.vagrant_folder }}"
+    chdir: "{{ item.vagrant_folder }}"
   changed_when: false
   register: boxes
 

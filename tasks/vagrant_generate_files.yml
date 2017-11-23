@@ -1,27 +1,27 @@
 ---
-- name: Check {{ item.value.vagrant_folder }} exists
+- name: Check {{ item.vagrant_folder }} exists
   stat:
-    path: "{{ item.value.vagrant_folder }}"
+    path: "{{ item.vagrant_folder }}"
   register: result
 
-- name: WARNING - {{ item.value.vagrant_folder }} exists
+- name: WARNING - {{ item.vagrant_folder }} exists
   fail:
     msg: "Check before overwriting Vagrant files."
   when: result.stat.exists == true
 
-- name: Create {{ item.value.vagrant_folder }}
+- name: Create {{ item.vagrant_folder }}
   file:
-    path: "{{ item.value.vagrant_folder }}"
+    path: "{{ item.vagrant_folder }}"
     state: directory
   when: result.stat.exists == false
 
 - name: Generate Vagrant config file
   template:
     src: Vagrantfile.j2
-    dest: "{{ item.value.vagrant_folder }}/Vagrantfile"
+    dest: "{{ item.vagrant_folder }}/Vagrantfile"
 
 - name: Generate Vagrant config file
   template:
     src: config.yml.j2
-    dest: "{{ item.value.vagrant_folder }}/config.yml"
+    dest: "{{ item.vagrant_folder }}/config.yml"
 ...
