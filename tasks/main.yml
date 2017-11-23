@@ -2,7 +2,7 @@
 - name: Generate Vagrantfile and config.yml
   include_tasks: vagrant_generate_files.yml
   with_items: "{{ vagrant_host_list }}"
-  when: (taskname == "generate_files") and (taskname is defined)
+  when: (taskname == "vagrant_up") and (taskname is defined)
 
 - name: Start Vagrant boxes
   include_tasks: "vagrant_up.yml"
