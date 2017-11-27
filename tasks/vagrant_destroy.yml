@@ -1,7 +1,18 @@
 ---
+- name: Check if the vagrant folder exists
+  stat: path="{{ item.vagrant_folder }}"
+  register: vagrant_folder
+
 - name: Destroy Vagrant virtual machines
   command: "vagrant destroy"
   args:
     chdir: "{{ item.vagrant_folder }}"
   changed_when: false
+  when: vagrant_folder.stat.exists == True
+
+- name: Removing the vagrant folder
+  file:
+    name: "{{ item.vagrant_folder }}"
+    state: absent
+  when: vagrant_folder.stat.exists == True
 ...
