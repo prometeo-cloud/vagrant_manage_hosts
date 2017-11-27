@@ -1,7 +1,12 @@
 ---
+- name: Check if the vagrant folder exists
+  stat: path="{{ item.vagrant_folder }}"
+  register: vagrant_folder
+
 - name: Halt Vagrant virtual machines
   command: "vagrant halt"
   args:
     chdir: "{{ item.vagrant_folder }}"
   changed_when: false
+  when: vagrant_folder.stat.exists == True
 ...
